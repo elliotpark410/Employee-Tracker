@@ -1,5 +1,6 @@
 # Employee-Tracker
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A command-line application to manage a company's employee database, using Node.js, Inquirer, and MySQL
 
 
