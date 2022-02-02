@@ -1,0 +1,18 @@
+TODOS: 
+-Create git repository 
+-Clone to local machine 
+-Read README.md 
+-Watch class video 
+-Review Activities 
+-Complete Code Drills 
+-Create Pseudocode 
+-Create user story 
+-Create wireframe 
+-Begin Coding 
+-Practice git branching 
+-Add comments and clean up code 
+-Create README 
+-Review grading criteria 
+-Submit to BCS 
+
+
