@@ -1,7 +1,7 @@
 TODOS: 
 -Create git repository 
 -Clone to local machine 
--Read README.md 
+-Read README-initial.md 
 -Watch class video 
 -Review Activities 
 -Complete Code Drills 
@@ -11,7 +11,7 @@ TODOS:
 -Begin Coding 
 -Practice git branching 
 -Add comments and clean up code 
--Create README 
+-Create README.md
 -Review grading criteria 
 -Submit to BCS 
 
