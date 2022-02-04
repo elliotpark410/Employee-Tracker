@@ -16,8 +16,8 @@ VALUES ("software engineer", 100000, 1),
        
 
 INSERT INTO employee (first_name, last_name, role_id)
-VALUES ("Hannah", "Folk", 2),
-       ("Elliot", "Park", 1),
+VALUES ("Elliot", "Park", 1),
+       ("Hannah", "Folk", 2),
        ("Fred", "Park", 3),
        ("Peter", "Park", 4),
        ("Grant", "Lee", 5),
@@ -27,8 +27,8 @@ VALUES ("Hannah", "Folk", 2),
 
 
 UPDATE employee
-SET manager_id = 1
-WHERE id = 2;
+SET manager_id = 2
+WHERE id = 1;
 
 UPDATE employee
 SET manager_id = 4
