@@ -16,3 +16,22 @@ TODOS:
 -Submit to BCS 
 
 
+Hannah Folk's Tip: 
+    Inquirer choices array can take in an array of objects in this format
+
+        [
+          {
+            "name": "Software Engineer",
+            "value": 1
+          },
+          {
+            "name": "Lead Engineer",
+            "value": 2
+          },
+        ]
+
+    If you do that, then the inquirer will show the name in the terminal
+    but if you console log the answers then actually its the value that shows up in the console log
+
+    That’s gonna make your life a lot easier for the add and update statements since the values are the same as the ids
+    anyway, not sure if you already knew that about inquirer, but that tip is super helpful for htis hw
