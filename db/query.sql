@@ -1,4 +1,4 @@
-USE business_db;
+USE employee_tracker_db;
 
 SELECT * FROM department;
 
