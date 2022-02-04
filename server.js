@@ -85,3 +85,36 @@ function viewDepartments() {
       initPrompt();
   });
 }
+
+// Create function for view roles
+function viewRoles() {
+  const sql = 'SELECT role.id AS id, role.title AS role, role.salary AS salary FROM role;';
+
+  // query database
+  db.query(sql, (err, data) => {
+    if (err) {
+      console.log(err);
+    }
+      // Console.table() method displays tabular data as a table 
+      console.table(data);
+      // return to inquirer prompt
+      initPrompt();
+  });
+}
+
+
+function viewRoles() {
+  const sql = 'SELECT role.id AS id, role.title AS role, role.salary AS salary FROM role;';
+
+  // query database
+  db.query(sql, (err, data) => {
+    if (err) {
+      console.log(err);
+    }
+      // Console.table() method displays tabular data as a table 
+      console.table(data);
+      // return to inquirer prompt
+      initPrompt();
+  });
+}
+
