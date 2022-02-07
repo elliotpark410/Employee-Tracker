@@ -31,7 +31,9 @@ function initPrompt() {
         "Exit",
       ],
     })
+
     .then((answer) => {
+      // use a switch statement to execute function depending on different cases
       switch (answer.choices) {
         case "View All Departments":
           viewDepartments();
@@ -68,10 +70,12 @@ function initPrompt() {
     });
 }
 
+// initialize funtion (inquirer prompt)
 initPrompt();
 
 // Create function to view departments
 function viewDepartments() {
+  // create SELECT statement to retrieve data from department table
   const sql =
     "SELECT department.id AS id, department.name AS department FROM department;";
 
@@ -90,6 +94,7 @@ function viewDepartments() {
 // Create function for view roles
 function viewRoles() {
   const sql =
+  // create SELECT statement with inner join on department table to retrieve data from role table 
     "SELECT role.id AS id, role.title AS role, role.salary AS salary, department.name FROM role INNER JOIN department ON role.department_id = department.id;";
 
   // query database
@@ -107,6 +112,7 @@ function viewRoles() {
 // Create function to view employees
 function viewEmployees() {
   const sql =
+  // create SELECT statement with inner join on department table, role table, and employee table (for manager) to retrieve data from employee table
     'SELECT employee.id AS id, CONCAT (employee.first_name, " ", employee.last_name) AS employee, role.title AS role, role.salary AS salary, department.name AS department, CONCAT (manager.first_name, " ", manager.last_name) AS manager FROM department INNER JOIN role on department.id = role.department_id INNER JOIN employee ON role.id = employee.role_id LEFT JOIN employee manager ON manager.id = employee.manager_id ORDER BY employee.id ASC;';
 
   // query database
@@ -139,6 +145,7 @@ function addDepartment() {
       },
     ])
     .then((answer) => {
+      // create INSERT INTO statement to insert new department
       const sql = `INSERT INTO department (name) VALUES (?);`;
 
       // query database
@@ -168,6 +175,8 @@ function addDepartment() {
 
 // Create function to add a department
 function addRole() {
+
+  // get data from department table. will use this data later to display departments and get department id
   const sql = "SELECT * FROM department";
   db.query(sql, (err, data) => {
     if (err) {
@@ -205,6 +214,7 @@ function addRole() {
           type: "list",
           message: "Which department does the role belong to?",
           choices: () => {
+            // use data from department table to get array of department names
             let departmentChoiceArray = [];
             for (let i = 0; i < data.length; i++) {
               departmentChoiceArray.push(data[i].name);
@@ -214,6 +224,8 @@ function addRole() {
         },
       ])
       .then((answer) => {
+
+        // use data from department table to get the department id for user's department choice (answer.department)
         let departmentId;
         for (let i = 0; i < data.length; i++) {
           if (answer.department === data[i].name) {
@@ -221,8 +233,10 @@ function addRole() {
           }
         }
 
+        // create INSERT INTO statement to insert new role
         const sql = `INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?);`;
 
+        // create array of parameters entered into sql statement above
         const roleValues = [answer.role, answer.salary, departmentId];
 
         // query database
@@ -253,6 +267,8 @@ function addRole() {
 
 // Create function to add an employee
 function addEmployee() {
+
+  // get data from employee table. will use this data later to display employee's role and employee's maanger
   const sql =
     'SELECT employee.id AS id, CONCAT (employee.first_name, " ", employee.last_name) AS employee, role.id AS role_id, role.title AS role, role.salary AS salary, department.id AS department_id, department.name AS department, CONCAT (manager.first_name, " ", manager.last_name) AS manager FROM department INNER JOIN role on department.id = role.department_id INNER JOIN employee ON role.id = employee.role_id LEFT JOIN employee manager ON manager.id = employee.manager_id ORDER BY employee.id ASC;';
   db.query(sql, (err, data) => {
@@ -291,6 +307,7 @@ function addEmployee() {
           type: "list",
           message: "What is the employee's role?",
           choices: () => {
+            // use data from employee table to get array of role titles
             let roleChoiceArray = [];
             for (let i = 0; i < data.length; i++) {
               roleChoiceArray.push(data[i].role);
@@ -303,6 +320,7 @@ function addEmployee() {
           type: "list",
           message: "Who is the employee's manager?",
           choices: () => {
+            // use data from employee table to get array of employee names
             let managerChoiceArray = [];
             for (let i = 0; i < data.length; i++) {
               managerChoiceArray.push(data[i].employee);
@@ -312,6 +330,8 @@ function addEmployee() {
         },
       ])
       .then((answer) => {
+        
+        // use data from employee table to get the role id for user's role choice (answer.role)
         let roleId;
         for (let i = 0; i < data.length; i++) {
           if (answer.role === data[i].role) {
@@ -319,6 +339,7 @@ function addEmployee() {
           }
         }
 
+        // use data from employee table to get the manager id for user's manager choice (answer.manager)
         let managerId;
         for (let i = 0; i < data.length; i++) {
           if (answer.manager === data[i].manager) {
@@ -326,8 +347,10 @@ function addEmployee() {
           }
         }
 
+        // create INSERT INTO statement to insert new employee
         const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?);`;
 
+        // create array of parameters entered into sql statement above
         const employeeValues = [
           answer.firstName,
           answer.lastName,
@@ -364,6 +387,8 @@ function addEmployee() {
 
 // Create function to update employee
 function updateEmployee() {
+
+  // get data from employee table. will use this data later to display employee's role and employee's maanger
   const sql =
     'SELECT employee.id AS id, CONCAT (employee.first_name, " ", employee.last_name) AS employee, role.id AS role_id, role.title AS role, role.salary AS salary, department.id AS department_id, department.name AS department, CONCAT (manager.first_name, " ", manager.last_name) AS manager FROM department INNER JOIN role on department.id = role.department_id INNER JOIN employee ON role.id = employee.role_id LEFT JOIN employee manager ON manager.id = employee.manager_id ORDER BY employee.id ASC;';
   db.query(sql, (err, data) => {
@@ -378,6 +403,7 @@ function updateEmployee() {
           type: "list",
           message: "Which employee's role do you want to update?",
           choices: () => {
+            // use data from employee table to get array of employee names
             let employeeNameChoiceArray = [];
             for (let i = 0; i < data.length; i++) {
               employeeNameChoiceArray.push(data[i].employee);
@@ -390,6 +416,7 @@ function updateEmployee() {
           type: "list",
           message: "Which role do you want to assign the selected employee?",
           choices: () => {
+            // use data from employee table to get array of employee roles
             let employeeRoleChoiceArray = [];
             for (let i = 0; i < data.length; i++) {
               employeeRoleChoiceArray.push(data[i].role);
@@ -399,6 +426,8 @@ function updateEmployee() {
         },
       ])
       .then((answer) => {
+
+        // use data from employee table to get the employee id for user's update employee choice (answer.employeeName)
         let employeeId;
         for (let i = 0; i < data.length; i++) {
           if (answer.employeeName === data[i].employee) {
@@ -406,6 +435,7 @@ function updateEmployee() {
           }
         }
 
+        // use data from employee table to get the role id for user's update role choice (answer.employeeRole)
         let roleId;
         for (let i = 0; i < data.length; i++) {
           if (answer.employeeRole === data[i].role) {
@@ -413,8 +443,10 @@ function updateEmployee() {
           }
         }
 
+        // create UPDATE statement to update employee role
         const sql = `UPDATE employee SET role_id = ? WHERE id = ?;`;
 
+        // create array of parameters entered into sql statement above
         const roleUpdate = [roleId, employeeId];
 
         // query database
