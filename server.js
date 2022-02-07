@@ -151,6 +151,8 @@ function addDepartment() {
         if (err) {
           console.log(err);
         }
+
+          console.log(`Added ${answer.department} department to the database`);
           // Console.table() method displays tabular data as a table 
           console.table(data);
           // return to inquirer prompt
@@ -166,10 +168,10 @@ function addDepartment() {
 function addRole() {
 
   const sql = 'SELECT * FROM department';
-    db.query(sql, (err, data) => {
-      if (err) {
-        console.log(err);
-      }
+  db.query(sql, (err, data) => {
+    if (err) {
+      console.log(err);
+    }
 
     inquirer.prompt([
       {
@@ -217,7 +219,6 @@ function addRole() {
         }
       }
     
-
       const sql = `INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?);`;
       
       const roleValues = [answer.role, answer.salary, departmentId]
@@ -230,29 +231,131 @@ function addRole() {
   
         const showTable = 'SELECT role.id AS id, role.title AS role, role.salary AS salary, department.name FROM role INNER JOIN department ON role.department_id = department.id;';
   
-          // query database
-      db.query(showTable, (err, data) => {
+        // query database
+        db.query(showTable, (err, data) => {
+          if (err) {
+            console.log(err);
+          }
+
+          console.log(`Added ${answer.role} role to the database`);
+            // Console.table() method displays tabular data as a table 
+            console.table(data);
+            // return to inquirer prompt
+            initPrompt();
+        });
+
+      });
+    })
+  })
+}
+
+
+
+
+
+// Create function to add an employee
+function addEmployee() {
+
+  const sql = 'SELECT employee.id AS id, CONCAT (employee.first_name, " ", employee.last_name) AS employee, role.id AS role_id, role.title AS role, role.salary AS salary, department.id AS department_id, department.name AS department, CONCAT (manager.first_name, " ", manager.last_name) AS manager FROM department INNER JOIN role on department.id = role.department_id INNER JOIN employee ON role.id = employee.role_id LEFT JOIN employee manager ON manager.id = employee.manager_id ORDER BY employee.id ASC;';
+  db.query(sql, (err, data) => {
+    if (err) {
+      console.log(err);
+    }
+
+    inquirer.prompt([
+      {
+        name: 'firstName',
+        type: 'input',
+        message: "What is the employee's first name?",
+        validate: (input) => {
+          if (input) {
+            return true;
+          } else {
+            return 'Please enter a first name .';
+          }
+        }
+      },
+      {
+        name: 'lastName',
+        type: 'input',
+        message: "What is the employee's last name?",
+        validate: (input) => {
+          if (input) {
+            return true;
+          } else {
+            return 'Please enter a last name.';
+          }
+        }
+      },
+      {
+        name: "role",
+        type: "list",
+        message: "What is the employee's role?",
+        choices: () => {
+          let roleChoiceArray = [];
+          for (let i = 0; i < data.length; i++) {
+            roleChoiceArray.push(data[i].role);
+          }
+          return roleChoiceArray;
+        }
+      },
+      {
+        name: "manager",
+        type: "list",
+        message: "Who is the employee's manager?",
+        choices: () => {
+          let managerChoiceArray = [];
+          for (let i = 0; i < data.length; i++) {
+            managerChoiceArray.push(data[i].employee);
+          }
+          return managerChoiceArray;
+        }
+      }
+    ]) 
+    .then ((answer) => {
+      
+      let roleId;
+      for (let i = 0; i < data.length; i++) {
+        if (answer.role === data[i].role) {
+          roleId = data[i].role_id.toString();
+        }
+      }
+
+
+      let managerId;
+      for (let i = 0; i < data.length; i++) {
+        if (answer.manager === data[i].manager) {
+          managerId = data[i+1].id.toString();
+        }
+      }
+    
+      const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?);`;
+      
+      const employeeValues = [answer.firstName, answer.lastName, roleId, managerId]
+
+      // query database
+      db.query(sql, employeeValues, (err) => {
         if (err) {
           console.log(err);
         }
-          // Console.table() method displays tabular data as a table 
-          console.table(data);
-          // return to inquirer prompt
-          initPrompt();
+  
+        const showTable = 'SELECT employee.id AS id, CONCAT (employee.first_name, " ", employee.last_name) AS employee, role.title AS role, role.salary AS salary, department.name AS department, CONCAT (manager.first_name, " ", manager.last_name) AS manager FROM department INNER JOIN role on department.id = role.department_id INNER JOIN employee ON role.id = employee.role_id LEFT JOIN employee manager ON manager.id = employee.manager_id ORDER BY employee.id ASC;';
+  
+        // query database
+        db.query(showTable, (err, data) => {
+          if (err) {
+            console.log(err);
+          }
+          console.log(`Added ${answer.firstName} ${answer.lastName} employee to the database`);
+            // Console.table() method displays tabular data as a table 
+            console.table(data);
+            // return to inquirer prompt
+            initPrompt();
+        });
+
       });
-      });
+    })
   })
-})
-
-
-
-
-
-
-
-
-
-
 }
 
 
