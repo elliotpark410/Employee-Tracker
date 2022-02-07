@@ -1,29 +1,25 @@
 # Employee-Tracker
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A command-line application to manage a company's employee database, using Node.js, Inquirer, and MySQL
+Employee Tracker is a command-line application to manage a company's employee database. With this application, you will be able to view and update 3 SQL tables (department, role, and employee). The application uses [Node.js](https://nodejs.org/en/download/), [npm Inquirer](https://www.npmjs.com/package/inquirer), and [MySQL](https://www.mysql.com/downloads/).
 
-
-OLD README.md. MUST UPDATE!
-
-The Note Taker application can be used to write, save, and retrieve notes. The application uses the [Express package](https://www.npmjs.com/package/express) for the back end framework. It will save and retrieve note data from a JSON file. 
 
 <br>
 
 
 ## Links
-
+<!-- 
 Deployed App on Heroku
 > [https://note-taker-elliotpark.herokuapp.com/](https://note-taker-elliotpark.herokuapp.com/)
-<br>
+<br> -->
 
 Link to GIF of Application
-> [https://drive.google.com/file/d/1-fN70Da55qfgyvn8uq_jFv9tV8EVjPYc/view](https://drive.google.com/file/d/1-fN70Da55qfgyvn8uq_jFv9tV8EVjPYc/view)
+> [https://drive.google.com/file/d/1ivP0EtLiI3hlsF6KbffkX7InR82vLHnL/view](https://drive.google.com/file/d/1ivP0EtLiI3hlsF6KbffkX7InR82vLHnL/view)
 <br>
 
 
 Github Repository
-> [https://github.com/elliotpark410/Note-Taker](https://github.com/elliotpark410/Note-Taker)
+> [https://github.com/elliotpark410/Employee-Tracker](https://github.com/elliotpark410/Employee-Tracker)
 
 <br>
 
@@ -31,7 +27,6 @@ Github Repository
 ## Table of Contents
   * [Getting-Started](#getting-started)
   * [Installation](#installation)
-  * [Test-Instructions](#test-instructions)
   * [Technologies-Used](#technologies-used)
   * [Contribution-Guidelines](#contribution-guidelines)
   * [Cloning-Guidelines](#cloning-guidelines)
@@ -51,7 +46,7 @@ Github Repository
 To begin the application, use the following in command line:
 
 ```bash
-node server.js
+npm start
 ```
 <br>
 
@@ -76,9 +71,33 @@ node server.js
 
 <br>
 
-4. Now you have to install Express.js which is one of the many node packages. In command line, you can enter:
+4. Next, install Inquirer.js which is one of the many node packages. In command line, you can enter:
 
->npm install express
+>npm install inquirer
+
+<br>
+
+5. Next, install console.table which is one of the many node packages. In command line, you can enter:
+
+>npm install console.table
+
+<br>
+
+6. Next, install console.table which is one of the many node packages. In command line, you can enter:
+
+>npm install console.table
+
+<br>
+
+7. Next, install mysql2 which is one of the many node packages. In command line, you can enter:
+
+>npm install mysql2
+
+<br>
+
+8. Lastly, you will need to download mysql:
+
+>https://www.mysql.com/downloads/
 
 <br>
 
@@ -89,7 +108,7 @@ Requires node.js, npm inquirer, and npm jest (optional)
 <br> -->
 
 
-## Test-Instructions
+<!-- ## Test-Instructions
 
 To test the API, I recommend downloading [Insomnia's API Platform](https://insomnia.rest/) and enter the following in Insomnia's URL:
 
@@ -118,16 +137,17 @@ Example POST body:
 Example DELETE: The API request below will delete note with id = "1"
 >DELETE http://localhost:3000/api/notes/1
 
-<br>
+<br> -->
 
 
 ## Technologies-Used
 
-* [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
-* [Bootstrap CSS](https://getbootstrap.com/)
 * [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 * [Node.js](https://nodejs.org/en/)
-* [npm Express](https://www.npmjs.com/package/express)
+* [npm Inquirer](https://www.npmjs.com/package/inquirer)
+* [npm console.table](https://www.npmjs.com/package/console.table)
+* [npm mysql2](https://www.npmjs.com/package/mysql2)
+* [MySQL](https://www.mysql.com/downloads/)
 
 
 <br>
@@ -154,7 +174,7 @@ To install this code, please use [Github's guidlines to clone the repository](ht
 <br>
 
 Github repository:
->https://github.com/elliotpark410/Note-Taker
+>https://github.com/elliotpark410/Employee-Tracker
 
 <br>
 
