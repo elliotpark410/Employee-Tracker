@@ -10,8 +10,8 @@ TODOS:
 -Create wireframe 
 -Begin Coding DONE
 -Practice git branching 
--Add comments and clean up code 
--Create README.md
+-Add comments and clean up code DONE
+-Create README.md DONE
 -Review grading criteria 
 -Submit to BCS 
 

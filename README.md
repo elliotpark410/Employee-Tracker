@@ -1,8 +1,7 @@
 # Employee-Tracker
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Employee Tracker is a command-line application to manage a company's employee database. With this application, you will be able to view and update 3 SQL tables (department, role, and employee). The application uses [Node.js](https://nodejs.org/en/download/), [npm Inquirer](https://www.npmjs.com/package/inquirer), and [MySQL](https://www.mysql.com/downloads/).
-
+Employee Tracker is a command-line application to manage a company's employee database. With this application, you will be able to view and update 3 SQL tables (department, role, and employee). The purpose of this application is to have a Content Management System so that non-developers can easily view and interact with information stored in databases. The application uses [Node.js](https://nodejs.org/en/download/), [npm Inquirer](https://www.npmjs.com/package/inquirer), and [MySQL](https://www.mysql.com/downloads/). 
 
 <br>
 
