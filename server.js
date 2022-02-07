@@ -147,7 +147,10 @@ function addDepartment() {
       const showTable = 'SELECT department.id AS id, department.name AS department FROM department;';
 
       // query database
-      db.query(showTable, (data) => {
+      db.query(showTable, (err, data) => {
+        if (err) {
+          console.log(err);
+        }
           // Console.table() method displays tabular data as a table 
           console.table(data);
           // return to inquirer prompt
@@ -156,5 +159,101 @@ function addDepartment() {
     });
   })
 }
+
+
+
+// Create function to add a department
+function addRole() {
+
+  const sql = 'SELECT * FROM department';
+    db.query(sql, (err, data) => {
+      if (err) {
+        console.log(err);
+      }
+
+    inquirer.prompt([
+      {
+        name: 'role',
+        type: 'input',
+        message: 'What is the name of the role?',
+        validate: (input) => {
+          if (input) {
+            return true;
+          } else {
+            return 'Please enter a role.';
+          }
+        }
+      },
+      {
+        name: 'salary',
+        type: 'input',
+        message: 'What is the salary of the role?',
+        validate: (input) => {
+          if (isNaN(input) === false) {
+            return true;
+          } else {
+            return 'Please enter a salary.';
+          }
+        }
+      },
+      {
+        name: "department",
+        type: "list",
+        message: "Which department does the role belong to?",
+        choices: () => {
+          let departmentChoiceArray = [];
+          for (let i = 0; i < data.length; i++) {
+            departmentChoiceArray.push(data[i].name);
+          }
+          return departmentChoiceArray;
+        }
+      }
+    ]) .then ((answer) => {
+
+      let departmentId;
+      for (let i = 0; i < data.length; i++) {
+        if (answer.department === data[i].name) {
+          departmentId = data[i].id.toString();
+        }
+      }
+    
+
+      const sql = `INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?);`;
+      
+      const roleValues = [answer.role, answer.salary, departmentId]
+
+      // query database
+      db.query(sql, roleValues, (err) => {
+        if (err) {
+          console.log(err);
+        }
+  
+        const showTable = 'SELECT role.id AS id, role.title AS role, role.salary AS salary, department.name FROM role INNER JOIN department ON role.department_id = department.id;';
+  
+          // query database
+      db.query(showTable, (err, data) => {
+        if (err) {
+          console.log(err);
+        }
+          // Console.table() method displays tabular data as a table 
+          console.table(data);
+          // return to inquirer prompt
+          initPrompt();
+      });
+      });
+  })
+})
+
+
+
+
+
+
+
+
+
+
+}
+
 
 
