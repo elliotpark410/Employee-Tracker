@@ -46,7 +46,7 @@ Github Repository
 To begin the application, use the following in command line:
 
 ```bash
-npm start
+node server.js
 ```
 <br>
 
