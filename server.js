@@ -360,3 +360,91 @@ function addEmployee() {
 
 
 
+
+
+
+
+// Create function to update employee
+function updateEmployee() {
+
+  const sql = 'SELECT employee.id AS id, CONCAT (employee.first_name, " ", employee.last_name) AS employee, role.id AS role_id, role.title AS role, role.salary AS salary, department.id AS department_id, department.name AS department, CONCAT (manager.first_name, " ", manager.last_name) AS manager FROM department INNER JOIN role on department.id = role.department_id INNER JOIN employee ON role.id = employee.role_id LEFT JOIN employee manager ON manager.id = employee.manager_id ORDER BY employee.id ASC;';
+  db.query(sql, (err, data) => {
+    if (err) {
+      console.log(err);
+    }
+
+    inquirer.prompt([
+      {
+        name: "employeeName",
+        type: "list",
+        message: "Which employee's role do you want to update?",
+        choices: () => {
+          let employeeNameChoiceArray = [];
+          for (let i = 0; i < data.length; i++) {
+            employeeNameChoiceArray.push(data[i].employee);
+          }
+          return employeeNameChoiceArray;
+        }
+      },
+      {
+        name: "employeeRole",
+        type: "list",
+        message: "Which role do you want to assign the selected employee?",
+        choices: () => {
+          let employeeRoleChoiceArray = [];
+          for (let i = 0; i < data.length; i++) {
+            employeeRoleChoiceArray.push(data[i].role);
+          }
+          return employeeRoleChoiceArray;
+        }
+      }
+    ]) 
+    .then ((answer) => {
+
+      let employeeId;
+      for (let i = 0; i < data.length; i++) {
+        if (answer.employeeName === data[i].employee) {
+          employeeId = data[i].id.toString();
+        }
+      }
+
+      
+      let roleId;
+      for (let i = 0; i < data.length; i++) {
+        if (answer.employeeRole === data[i].role) {
+          roleId = data[i].role_id.toString();
+        }
+      }
+    
+      const sql = `UPDATE employee SET role_id = ? WHERE id = ?;`;
+      
+      const roleUpdate = [roleId, employeeId];
+
+      // query database
+      db.query(sql, roleUpdate, (err) => {
+        if (err) {
+          console.log(err);
+        }
+  
+        const showTable = 'SELECT employee.id AS id, CONCAT (employee.first_name, " ", employee.last_name) AS employee, role.title AS role, role.salary AS salary, department.name AS department, CONCAT (manager.first_name, " ", manager.last_name) AS manager FROM department INNER JOIN role on department.id = role.department_id INNER JOIN employee ON role.id = employee.role_id LEFT JOIN employee manager ON manager.id = employee.manager_id ORDER BY employee.id ASC;';
+  
+        // query database
+        db.query(showTable, (err, data) => {
+          if (err) {
+            console.log(err);
+          }
+          console.log(`Updated ${answer.employeeName}'s role in the database`);
+            // Console.table() method displays tabular data as a table 
+            console.table(data);
+            // return to inquirer prompt
+            initPrompt();
+        });
+
+      });
+    })
+  })
+}
+
+
+
+
