@@ -83,19 +83,13 @@ node server.js
 
 <br>
 
-6. Next, install console.table which is one of the many node packages. In command line, you can enter:
-
->npm install console.table
-
-<br>
-
-7. Next, install mysql2 which is one of the many node packages. In command line, you can enter:
+6. Next, install mysql2 which is one of the many node packages. In command line, you can enter:
 
 >npm install mysql2
 
 <br>
 
-8. Lastly, you will need to download mysql:
+7. Lastly, you will need to download mysql:
 
 >https://www.mysql.com/downloads/
 
