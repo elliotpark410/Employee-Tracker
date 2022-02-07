@@ -182,13 +182,33 @@ Github repository:
 ## Screenshots 
 
 <br>
-Screenshot of Homepage
-<img src="Images\Homepage screenshot.png" title="Note Taker Homepage screenshot" width = 700px>
+Screenshot of Initial Prompt
+<img src="Images\Initial Prompt screenshot.png" title="Initial Prompt screenshot" width = 700px>
 
 <br>
 <br>
-Screenshot of Notes page
-<img src="Images\Notes Page screenshot.png" title="Note Taker Notes Page screenshot" width = 700px>
+Screenshot of View Employees table
+<img src="Images\View Employees screenshot.png" title="View Employees table screenshot" width = 700px>
+
+<br>
+<br>
+Screenshot of Add Department prompt 
+<img src="Images\Add Department screenshot.png" title="Add Department prompt screenshot" width = 700px>
+
+<br>
+<br>
+Screenshot of Add Role prompt
+<img src="Images\Add Role screenshot.png" title="Add Role prompt screenshot" width = 700px>
+
+<br>
+<br>
+Screenshot of Add Employee prompt
+<img src="Images\Add Employee screenshot.png" title="Add Employee prompt screenshot" width = 700px>
+
+<br>
+<br>
+Screenshot of Update Employee prompt
+<img src="Images\Update Employee screenshot.png" title="Update Employee prompt screenshot" width = 700px>
 
 <br>
 <br>
@@ -196,66 +216,40 @@ Screenshot of Notes page
 
 ## GIF-of-Application
 
-<img src="Images\Note Taker .gif" title="Note Taker" width = 680px>
+<img src="Images\Employee-Tracker.gif" title="Employee Tracker gif" width = 448px>
 
 <br>
 
 Link to GIF of Application
-> [https://drive.google.com/file/d/1-fN70Da55qfgyvn8uq_jFv9tV8EVjPYc/view](https://drive.google.com/file/d/1-fN70Da55qfgyvn8uq_jFv9tV8EVjPYc/view)
+> [https://drive.google.com/file/d/1ivP0EtLiI3hlsF6KbffkX7InR82vLHnL/view](https://drive.google.com/file/d/1ivP0EtLiI3hlsF6KbffkX7InR82vLHnL/view)
 <br>
 
 <br>
 
 ## Code-Snippets
 
-This code snippet shows how you can create a delete route to delete an object with JavaScript, Node.js, and npm Express
+This code snippet shows how you can use SQL and npm mysql2 to create a function to view the departments table
 
-* "app.delete("/api/notes/:id", function (req, res)" will create a DELETE route to delete a note depending on id parameter. For example, if user enters "http://localhost:3000/api/notes/4", then it will delete the note with id: 4
+* const sql uses Structured Query Language SELECT statement to display columns with an alias FROM the department table 
 
-* "fs.readFile("db/db.json", "utf8", (err, data)" is used to read existing array data in db.json
+* ".query" is a built-in method in npm mysql2 to execute a query in the mysql database
 
-* "let savedNotes = JSON.parse(data);" is used because the data in db.json was stored as stringified array so we need to do a JSON.parse
+* "console.table()" method displays tabular data as a table
 
-* "let noteId = req.params.id;" takes the id parameter entered by user which will later be used to recreate the notes object minus the note with the id parameter entered. For example, if user enters "http://localhost:3000/api/notes/2", then it will recreate the savedNotes array minus the object that has id: 2
-
-* savedNotes uses the .filter() method which creates a new array filled with elements that pass the test of notDeletedNotes.id is not equal to noteId
-
-*  The for of statement loops through the values of an iterable object so it will loop through all of the notDeletedNotes in savedNotes array
 
 ```
-app.delete("/api/notes/:id", function (req, res) {
-  console.log("notes delete route successful");
+function viewDepartments() {
+  const sql =
+    "SELECT department.id AS id, department.name AS department FROM department;";
 
-  fs.readFile("db/db.json", "utf8", (err, data) => {
-    err ? console.error(err) : console.log(data);
-    if (err) throw err;
-
-    let savedNotes = JSON.parse(data);
-    let noteId = req.params.id;
-    savedNotes = savedNotes.filter((notDeletedNote) => {
-      return notDeletedNote.id != noteId;
-    });
-
-    let newNotesId = 0;
-    for (notDeletedNote of savedNotes) {
-      notDeletedNote.id = newNotesId.toString();
-      newNotesId++;
+  db.query(sql, (err, data) => {
+    if (err) {
+      console.log(err);
     }
-
-    fs.writeFileSync(
-      "./db/db.json",
-      JSON.stringify(savedNotes, null, 2),
-      "utf8",
-      (err, data) => {
-        err ? console.error(err) : console.log(data);
-        if (err) throw err;
-      }
-    );
-
-    res.json(savedNotes);
+    console.table(data);
+    initPrompt();
   });
-});
-
+}
 ```
 
  <br>
@@ -263,13 +257,13 @@ app.delete("/api/notes/:id", function (req, res) {
 
 ## Learning-Points
 
-* How to use npm Express for routing URLs
+* How to use npm mysql2 to generate MySQL queries
 
-* How to use regular expressions for routing URLs
+* How to use promises and switch statements
 
-* How to read and sync files with fs.readFile() and fs.writeFileSync() methods
+* How to use SQL statements (SELECT, INSERT, DELETE, UPDATE, JOIN) 
 
-* How to use Insomnia's API platform to test API requests
+* How to use MySQL Workbench as a MySQL graphical user interface
 
 
 <br>
