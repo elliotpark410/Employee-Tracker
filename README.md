@@ -34,31 +34,24 @@ node server.js
 
 ## Prerequisites
 
-1. You will need to install Node.js. Here is a link below:
+1. Download Node.js
 
 >https://nodejs.org/en/download/
 
 <br>
 
-2. Once you have downloaded Node.js, you will want to download node package manager (npm). In command line, you can enter:
-
+2. Install node package manager (npm)
 >npm install -g npm
 
 <br>
 
-3. After installing npm, you have to initialize npm. In command line, you can enter:
-
->npm init -y 
-
-<br>
-
-4. Next, install dependencies inquirer, console.table, and mysql2
+3. Install dependencies inquirer, console.table, and mysql2
 
 >npm install
 
 <br>
 
-5. Lastly, you will need mysql:
+5. Download mysql:
 
 >https://www.mysql.com/downloads/
 
