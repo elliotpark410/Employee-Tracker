@@ -48,7 +48,7 @@ node server.js
 
 3. After installing npm, you have to initialize npm. In command line, you can enter:
 
->npm init -y && npm i
+>npm init -y 
 
 <br>
 
