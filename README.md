@@ -3,10 +3,7 @@
 
 Employee Tracker is a command-line application to manage a company's employee database. With this application, you will be able to view and update 3 SQL tables (department, role, and employee). The purpose of this application is to have a Content Management System so that non-developers can easily view and interact with information stored in databases. The application uses [Node.js](https://nodejs.org/en/download/), [Inquirer](https://www.npmjs.com/package/inquirer), and [MySQL](https://www.mysql.com/downloads/).
 
-<br>
-
-GIF of Application
->[https://drive.google.com/file/d/1ivP0EtLiI3hlsF6KbffkX7InR82vLHnL/view](https://drive.google.com/file/d/1ivP0EtLiI3hlsF6KbffkX7InR82vLHnL/view)
+[GIF of Application](https://drive.google.com/file/d/1ivP0EtLiI3hlsF6KbffkX7InR82vLHnL/view)
 
 <br>
 
