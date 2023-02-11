@@ -1,7 +1,7 @@
 # Employee-Tracker
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Employee Tracker is a command-line application to manage a company's employee database. With this application, you will be able to view and update 3 SQL tables (department, role, and employee). The purpose of this application is to have a Content Management System so that non-developers can easily view and interact with information stored in databases. The application uses [Node.js](https://nodejs.org/en/download/), [npm Inquirer](https://www.npmjs.com/package/inquirer), and [MySQL](https://www.mysql.com/downloads/).
+Employee Tracker is a command-line application to manage a company's employee database. With this application, you will be able to view and update 3 SQL tables (department, role, and employee). The purpose of this application is to have a Content Management System so that non-developers can easily view and interact with information stored in databases. The application uses [Node.js](https://nodejs.org/en/download/), [Inquirer](https://www.npmjs.com/package/inquirer), and [MySQL](https://www.mysql.com/downloads/).
 
 <br>
 
@@ -11,18 +11,18 @@ GIF of Application
 <br>
 
 ## Table of Contents
-  * [Getting-Started](#getting-started)
-  * [Installation](#installation)
-  * [Technologies-Used](#technologies-used)
+  * [Getting Started](#getting-started)
+  * [Prerequisites](#prerequisites)
+  * [Technologies Used](#technologies-used)
   * [Screenshots](#screenshots)
-  * [Code-Snippets](#code-snippets)
-  * [Learning-Points](#learning-points)
+  * [Code Snippets](#code-snippets)
+  * [Learning Points](#learning-points)
   * [Author](#author)
 
 <br>
 
 
-## Getting-Started
+## Getting Started
 
 To begin the application, use the following in command line:
 
@@ -32,7 +32,7 @@ node server.js
 <br>
 
 
-## Installation
+## Prerequisites
 
 1. You will need to install Node.js. Here is a link below:
 
@@ -64,7 +64,7 @@ node server.js
 
 <br>
 
-## Technologies-Used
+## Technologies Used
 
 * [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 * [Node.js](https://nodejs.org/en/)
@@ -110,7 +110,7 @@ Screenshot of Update Employee prompt
 <br>
 <br>
 
-## Code-Snippets
+## Code Snippets
 
 This code snippet shows how you can use SQL and npm mysql2 to create a function to view the departments table
 
@@ -139,7 +139,7 @@ function viewDepartments() {
  <br>
 
 
-## Learning-Points
+## Learning Points
 
 * How to use npm mysql2 to generate MySQL queries
 
@@ -156,15 +156,15 @@ function viewDepartments() {
 ## Author
  **1. Elliot Park**
 
-[https://github.com/elliotpark410](https://github.com/elliotpark410)
+[Github](https://github.com/elliotpark410)
 
 <br>
 
-[https://www.linkedin.com/in/elliot-park/](https://www.linkedin.com/in/elliot-park/)
+[LinkedIn](https://www.linkedin.com/in/elliot-park/)
 
 <br>
 
-[elliotpark410@gmail.com](mailto:elliotpark410@gmail.com)
+[Email](mailto:elliotpark410@gmail.com)
 
 <br>
 
